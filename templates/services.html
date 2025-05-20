@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posh Nosh Services - Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Posh Nosh Services">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('menu') }}">Menu</a></li>
+                    <li><a href="{{ url_for('services') }}" class="active">Services</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    {% if 'user_id' in session %}
+                        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}" class="btn-login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Quality home cooking with a professional touch</p>
+        </div>
+    </section>
+
+    <section class="services-intro">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="services-steps">
+                <div class="service-step">
+                    <div class="step-number">1</div>
+                    <h3>Initial Consultation</h3>
+                    <p>We start with a detailed consultation to understand your preferences, dietary needs, and schedule.</p>
+                </div>
+                <div class="service-step">
+                    <div class="step-number">2</div>
+                    <h3>Menu Planning</h3>
+                    <p>Based on your preferences, we create a customized weekly menu for your approval.</p>
+                </div>
+                <div class="service-step">
+                    <div class="step-number">3</div>
+                    <h3>Grocery Shopping</h3>
+                    <p>We source the freshest ingredients from local markets and specialty stores.</p>
+                </div>
+                <div class="service-step">
+                    <div class="step-number">4</div>
+                    <h3>Meal Preparation</h3>
+                    <p>Your chef prepares delicious meals in your kitchen, leaving everything clean and organized.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="service-packages">
+        <div class="container">
+            <h2>Service Packages</h2>
+            <p class="section-intro">Choose the package that best fits your lifestyle and needs.</p>
+            
+            <div class="services-container">
+                {% for package in packages %}
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3>{{ package.name }}</h3>
+                    </div>
+                    <div class="service-content">
+                        <p>{{ package.description }}</p>
+                        {% if package.is_all_inclusive %}
+                            <div class="service-price">${{ package.all_inclusive_price }}/week</div>
+                            <p><strong>All-Inclusive Price</strong></p>
+                        {% else %}
+                            <div class="service-price">${{ package.service_fee }}/week</div>
+                            <p><strong>Plus Grocery Costs</strong></p>
+                        {% endif %}
+                        <ul class="service-features">
+                            <li>{{ package.meals_count }} meals per week</li>
+                            <li>{{ package.servings_per_meal }} servings per meal</li>
+                            {% if package.is_all_inclusive %}
+                                <li>All ingredients included</li>
+                                <li>Premium packaging</li>
+                                <li>Dietary accommodations</li>
+                            {% endif %}
+                        </ul>
+                        <a href="{{ url_for('register') }}" class="btn-primary" style="width: 100%;">Select Package</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="additional-services">
+        <div class="container">
+            <h2>Additional Services</h2>
+            <div class="services-grid">
+                <div class="additional-service">
+                    <h3>Special Occasion Dinners</h3>
+                    <p>Impress your guests with a professionally prepared dinner for special occasions. We handle everything from menu planning to service.</p>
+                </div>
+                <div class="additional-service">
+                    <h3>Cooking Classes</h3>
+                    <p>Learn to prepare your favorite dishes with private cooking lessons tailored to your skill level and interests.</p>
+                </div>
+                <div class="additional-service">
+                    <h3>Dietary Consultations</h3>
+                    <p>Get personalized meal plans designed around specific health goals or dietary restrictions.</p>
+                </div>
+                <div class="additional-service">
+                    <h3>Pantry Restocking</h3>
+                    <p>Keep your kitchen stocked with essentials and specialty items based on your preferences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Elevate Your Dining Experience?</h2>
+            <p>Sign up now and start enjoying delicious, personalized meals.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('register') }}" class="btn-primary">Sign Up Now</a>
+                <a href="{{ url_for('contact') }}" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Posh Nosh Services">
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('menu') }}">Menu</a></li>
+                        <li><a href="{{ url_for('services') }}">Services</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@poshnoshservices.ca</p>
+                    <p>Phone: (604) 555-1234</p>
+                    <p>Downtown Vancouver, BC</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Posh Nosh Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

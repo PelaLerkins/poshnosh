@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posh Nosh Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Posh Nosh Services">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('menu') }}">Menu</a></li>
+                    <li><a href="{{ url_for('services') }}">Services</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    {% if 'user_id' in session %}
+                        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}" class="btn-login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Elevate Your Dining Experience</h1>
+            <p>Private chef services tailored to your preferences, delivered to your home in downtown Vancouver</p>
+            <a href="{{ url_for('services') }}" class="btn-primary">Explore Our Services</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="feature">
+                <div class="feature-icon">🍽️</div>
+                <h3>Personalized Menus</h3>
+                <p>Customized weekly menus based on your preferences and dietary needs</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👨‍🍳</div>
+                <h3>Professional Chef</h3>
+                <p>Experienced in various cuisine styles from around the world</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🥗</div>
+                <h3>Quality Ingredients</h3>
+                <p>Fresh, locally-sourced ingredients for the best flavors</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>Quality Home Cooking Without the Hassle</h2>
+                <p>Posh Nosh Services brings restaurant-quality meals to your home without the pretentiousness of fine dining. Our service is designed for busy professionals who appreciate good food but don't have the time to prepare it themselves.</p>
+                <p>With flexible packages and a wide variety of cuisine options, we cater to your specific tastes and dietary requirements.</p>
+                <a href="{{ url_for('register') }}" class="btn-secondary">Get Started</a>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='images/chef.jpg') }}" alt="Chef preparing a meal">
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"Having Posh Nosh prepare our weekly meals has been a game-changer. The food is delicious, and it's exactly what we want every time."</p>
+                    <p class="client-name">- Sarah M., Yaletown</p>
+                </div>
+                <div class="testimonial">
+                    <p>"As someone with specific dietary needs, finding Posh Nosh was a blessing. They accommodate all my restrictions without sacrificing flavor."</p>
+                    <p class="client-name">- Michael T., Coal Harbour</p>
+                </div>
+                <div class="testimonial">
+                    <p>"The convenience of having restaurant-quality meals prepared in my own kitchen is unmatched. Highly recommend!"</p>
+                    <p class="client-name">- Jennifer L., West End</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Elevate Your Dining Experience?</h2>
+            <p>Join our clients who enjoy stress-free, delicious meals every week.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('register') }}" class="btn-primary">Sign Up Now</a>
+                <a href="{{ url_for('contact') }}" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Posh Nosh Services">
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('menu') }}">Menu</a></li>
+                        <li><a href="{{ url_for('services') }}">Services</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@poshnoshservices.ca</p>
+                    <p>Phone: (604) 555-1234</p>
+                    <p>Downtown Vancouver, BC</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Posh Nosh Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

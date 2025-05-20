@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posh Nosh Services - Menu</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Posh Nosh Services">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('menu') }}" class="active">Menu</a></li>
+                    <li><a href="{{ url_for('services') }}">Services</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    {% if 'user_id' in session %}
+                        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}" class="btn-login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Menu</h1>
+            <p>Quality home cooking with a professional touch</p>
+        </div>
+    </section>
+
+    <section class="menu-content">
+        <div class="container">
+            <div class="menu-section">
+                <h2>Breakfast</h2>
+                <div class="menu-grid">
+                    {% for item in breakfast_items %}
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>{{ item.name }}</h3>
+                            <p>{{ item.description }}</p>
+                            <div class="menu-item-tags">
+                                {% for tag in item.dietary_tags.split(',') %}
+                                    {% if tag %}
+                                    <span class="menu-tag">{{ tag }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <h2>Lunch</h2>
+                <div class="menu-grid">
+                    {% for item in lunch_items %}
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>{{ item.name }}</h3>
+                            <p>{{ item.description }}</p>
+                            <div class="menu-item-tags">
+                                {% for tag in item.dietary_tags.split(',') %}
+                                    {% if tag %}
+                                    <span class="menu-tag">{{ tag }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <h2>Dinner</h2>
+                <div class="menu-grid">
+                    {% for item in dinner_items %}
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>{{ item.name }}</h3>
+                            <p>{{ item.description }}</p>
+                            <div class="menu-item-tags">
+                                {% for tag in item.dietary_tags.split(',') %}
+                                    {% if tag %}
+                                    <span class="menu-tag">{{ tag }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <h2>Snacks</h2>
+                <div class="menu-grid">
+                    {% for item in snack_items %}
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>{{ item.name }}</h3>
+                            <p>{{ item.description }}</p>
+                            <div class="menu-item-tags">
+                                {% for tag in item.dietary_tags.split(',') %}
+                                    {% if tag %}
+                                    <span class="menu-tag">{{ tag }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Enjoy These Delicious Meals?</h2>
+            <p>Sign up now and start customizing your weekly menu.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('register') }}" class="btn-primary">Sign Up Now</a>
+                <a href="{{ url_for('contact') }}" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Posh Nosh Services">
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('menu') }}">Menu</a></li>
+                        <li><a href="{{ url_for('services') }}">Services</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@poshnoshservices.ca</p>
+                    <p>Phone: (604) 555-1234</p>
+                    <p>Downtown Vancouver, BC</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Posh Nosh Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
